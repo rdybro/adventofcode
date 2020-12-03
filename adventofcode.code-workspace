@@ -1,0 +1,14 @@
+{
+    "folders": [
+		{
+			"name": "Advent of Code",
+			"path": "."
+		},
+	],
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.powershell"
+		]
+	},
+	"settings": {}
+}
