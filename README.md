@@ -1,6 +1,6 @@
 # Advent of Code :christmas_tree:
 
-These are my solutions to **Advent of Code**. The solutions are made using PowerShell.
+These are my solutions for **Advent of Code**. The solutions are made using PowerShell.
 
 ## Links
 
