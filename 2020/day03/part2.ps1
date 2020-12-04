@@ -22,7 +22,11 @@ foreach ($slope in $slopes) {
         
         $line = $inputContent[$coordinateY]
         
-        while($line.ToCharArray().Count -lt $coordinateX) { $line += $line }
+        while($line.ToCharArray().Count -le $coordinateX) { $line += $line }
+        # Need to use -le instead of -lt to make sure that $line is expanded in time
+        # $line.ToCharArray().Count is counting all the characters in a row (31), while the grid are 0-indexed (0-30)
+        # With -lt it would return $null on some lines because I would ask for $line[31]
+        # This character would not exist, because the line wasn't expanded yet, as the line count wasn't exceeded
         
         if($line[$coordinateX] -eq "#") { $treeCount++ }
     }
@@ -33,8 +37,3 @@ foreach ($slope in $slopes) {
 }
 
 Write-Host "Tree count is $treeCountMultiplied"
-
-# I am not getting right answer
-# Getting correct answer on example input though
-# Need to re-visit this one
-# Wrong answer: 3043957440

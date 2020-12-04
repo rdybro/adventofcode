@@ -17,7 +17,7 @@ while($coordinateY -lt $($inputContent.Count - 1)) {
 
     $line = $inputContent[$coordinateY]
 
-    while($line.ToCharArray().Count -lt $coordinateX) { $line += $line }
+    while($line.ToCharArray().Count -le $coordinateX) { $line += $line }
 
     if($line[$coordinateX] -eq "#") { $treeCount++ }
 }
