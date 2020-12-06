@@ -35,9 +35,12 @@ foreach($boardingpass in $inputContent) {
     }
 }
 
-$line = 0
+$array = @()
+$line = 1
 
-while($line -le ($seats | Sort-Object Row -Descending | Select-Object -First 1).Row) {
+# I subtract one from the line count, as we know it can't be last row
+
+while($line -le $(($seats | Sort-Object Row -Descending | Select-Object -First 1).Row) - 1) {
 
     if(($seats | Where-Object { $_.Row -eq $line }).Count -eq 7) {
         
@@ -45,7 +48,7 @@ while($line -le ($seats | Sort-Object Row -Descending | Select-Object -First 1).
             
             if(!($seats | Where-Object { $_.ID -eq ($seat.ID - 1)}) -or !($seats | Where-Object { $_.ID -eq ($seat.ID + 1)})) {
 
-                Write-Host $seat
+                $array += $seat
             }
         }
     }
@@ -53,7 +56,19 @@ while($line -le ($seats | Sort-Object Row -Descending | Select-Object -First 1).
     $line++
 }
 
-# This doesn't output the correct answer, but instead outputs 2 seats, one on 109-6 and one on 63-1
-# My seat is neighbor to one of these
-# I know it is not 109-6 because that would make my seat the last seat in the last row, we know that can't be the answer
-# And as I know 63-2 isn't missing a neighbor, my seat must be 63-0, and the answer is 504 (505-1)
+if($array.Count -eq 1) {
+
+    if($array[0].Column -eq 1) { Write-Host "ID is $($array[0].ID - 1)" }
+    elseif($array[0].Column -eq 6) { Write-Host "ID is $($array[0].ID + 1)" }
+}
+elseif(($array.Count -eq 2) -and ($array[0].Row -eq $array[1].Row)) {
+
+    Write-Host "ID is $(($array | Sort-Object Column | Select-Object -First 1).ID + 1)"
+}
+else {
+
+    $array
+}
+
+# Fixed so it only returns a single value for ID
+# Not that pretty, but seems to work - I tested against multiple inputs
