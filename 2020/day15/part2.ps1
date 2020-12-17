@@ -25,7 +25,7 @@ while($turnCurrent -le $turnTarget) {
     $previousTurn = $previousTurns[$lastNumber]
     $previousTurns[$lastNumber] = $turnCurrent - 1
     
-    if($previousTurn) { $lastNumber = $turnCurrent - 1 - $previousTurn}
+    if($previousTurn) { $lastNumber = $turnCurrent - 1 - $previousTurn }
     else { $lastNumber = 0 }
 
     $turnCurrent++
