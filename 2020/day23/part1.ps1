@@ -1,65 +1,60 @@
 
 # Advent of Code 2020
-# Day 23 - Part 1
+# Day 23 - Part 2
 
 $inputContent = "643719258"
 # $inputContent = "389125467" #Example input
 
 $moves = 100
 $currentMove = 1
-$currentCircle = $inputContent
-$currentCupIndex = 0
+$currentCup = $inputContent.Substring(0,1)
+$lastCup = $cups.Keys | Sort-Object -Descending | Select-Object -First 1
+
+$circle = $inputContent + $currentCup
+$cups = @{}
+
+$i = 0
+
+while($i -lt ($circle.Length) - 1) {
+
+    $substring = $circle.Substring($i,2)
+    $cups.Add($substring.Substring(0,1),$substring.Substring(1,1))
+    $i++
+}
 
 while($currentMove -le $moves) {
 
-    Write-Host "Run $currentMove : $currentCircle " -NoNewline
+    $collectedCupOne = $cups[$currentCup]
+    $collectedCupTwo = $cups[$collectedCupOne]
+    $collectedCupThree = $cups[$collectedCupTwo]
 
-    $cups = New-Object -TypeName "System.Collections.ArrayList"
-    foreach($char in $currentCircle.ToCharArray()) { $null = $cups.Add([System.Int32]::Parse($char)) }
+    $destinationCup = [int]$currentCup
+    $destinationCupTest = $false
 
-    $currentCup = $cups.Item($currentCupIndex)
-    $collectedCups = @()
-
-    while($collectedCups.Count -lt 3) {
-
-        if($collectedCups.Count -eq 0) { $collectedIndex = $currentCupIndex }
-        else { $collectedIndex = $cups.IndexOf($collectedCups[-1]) }
-
-        $collectedIndex++        
-        if($collectedIndex -ge $cups.Count) { $collectedIndex = 0 }
-
-        $collectedCups += $cups.Item($collectedIndex)
-    }
-
-    $remainingCups = $cups | Where-Object { $_ -notin $collectedCups }
-    $destinationCup = $currentCup
-    $destinationCupIndex = $null
-
-    while($null -eq $destinationCupIndex) {
+    while(!$destinationCupTest) {
 
         $destinationCup--
-        if($destinationCup -eq 0) { $destinationCup = 9 }
-        if($remainingCups.Contains($destinationCup)) { $destinationCupIndex = $remainingCups.IndexOf($destinationCup) }
-    }
-    
-    $currentCircle = ""
-
-    foreach($char in $remainingCups) {
-
-        $currentCircle += $char
-        if($char -eq $destinationCup) { $currentCircle += $collectedCups }
+        if($destinationCup -eq 0) { $destinationCup = [int]$lastCup }
+        if($cups[[string]$destinationCupString] -and ($destinationCup -ne $collectedCupOne) -and ($destinationCup -ne $collectedCupTwo) -and ($destinationCup -ne $collectedCupThree)) { $destinationCupTest = $true }
     }
 
-    $currentCircle = $currentCircle.Replace(" ","")
-    $currentCupIndex = $currentCircle.IndexOf("$currentCup") + 1
-    if($currentCupIndex -ge $cups.Count) { $currentCupIndex = 0 }
+    $cups[$currentCup] = $cups[$collectedCupThree]
+    $cups[$collectedCupThree] = $cups[[string]$destinationCup]
+    $cups[[string]$destinationCup] = $collectedCupOne
+
+    $currentCup = $cups[$currentCup]
 
     $currentMove++
-
-    Write-Host "// Collected $collectedCups // Current cup $currentCup // Destination cup $destinationCup"
 }
 
-$currentCircleSplit = $currentCircle.Split("1")
-$cupOrder = $currentCircleSplit[1] + $currentCircleSplit[0]
+$cupOrder = ""
+$nextCup = "1"
 
+while($cups[$nextCup] -ne "1") {
+    
+    $cupOrder += $cups[$nextCup]
+    $nextCup = $cups[$nextCup]
+}
+
+# Part 1 result = 54896723
 Write-Host "The order of the cups are: $cupOrder"
