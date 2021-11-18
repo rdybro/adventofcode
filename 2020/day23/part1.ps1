@@ -1,6 +1,6 @@
 
 # Advent of Code 2020
-# Day 23 - Part 2
+# Day 23 - Part 1
 
 $inputContent = "643719258"
 # $inputContent = "389125467" #Example input
@@ -35,7 +35,7 @@ while($currentMove -le $moves) {
 
         $destinationCup--
         if($destinationCup -eq 0) { $destinationCup = [int]$lastCup }
-        if($cups[[string]$destinationCupString] -and ($destinationCup -ne $collectedCupOne) -and ($destinationCup -ne $collectedCupTwo) -and ($destinationCup -ne $collectedCupThree)) { $destinationCupTest = $true }
+        if(($destinationCup -ne $collectedCupOne) -and ($destinationCup -ne $collectedCupTwo) -and ($destinationCup -ne $collectedCupThree)) { $destinationCupTest = $true }
     }
 
     $cups[$currentCup] = $cups[$collectedCupThree]
