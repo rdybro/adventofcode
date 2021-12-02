@@ -19,4 +19,3 @@ for($i = 3; $i -lt $inputContent.Count; $i++) {
 Write-Host "$count measurements are larger than the previous measurement."
 
 # Answer is 1491
-
