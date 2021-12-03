@@ -6,7 +6,6 @@
 $inputReader = New-Object System.IO.StreamReader("$((Get-Location).Path)\input.txt")
 #$inputReader = New-Object System.IO.StreamReader("$((Get-Location).Path)\input_example.txt")
 
-#$diagnosticArray = @(0,0,0,0,0)
 $diagnosticArray = $null
 
 while($line = $inputReader.ReadLine()) {
