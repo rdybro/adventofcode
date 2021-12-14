@@ -21,23 +21,13 @@ $foldValue = $fold[1]
 $inputReader.Close()
 $inputReader.Dispose()
 
-$last = $array.$foldAxis | Sort-Object | Select-Object -Last 1
-$foldSideA = $foldValue
-$foldSideB = $last - $foldValue
+$lastFoldValue = $array.$foldAxis | Sort-Object | Select-Object -Last 1
 
 foreach($item in $array | Where-Object { $_.$foldAxis -gt $foldValue } ) {
 
-    $item.$foldAxis = ($last - $item.$foldAxis) + ($foldSideA - $foldSideB)
+    $item.$foldAxis = ($lastFoldValue - $item.$foldAxis) + ($foldValue - ($lastFoldValue - $foldValue))
 }
 
-$test = @()
-
-foreach($item in $array) {
-
-    $string = "$($item.x),$($item.y)"
-    if($test -notcontains $string) { $test += $string }
-}
-
-Write-Host "There are $($test.Count) dots visible after the first fold."
+Write-Host "There are $(($array | Group-Object -Property x,y).Count) dots visible after the first fold."
 
 # Answer is 810

@@ -24,46 +24,39 @@ while($line = $inputReader.ReadLine()) {
 $inputReader.Close()
 $inputReader.Dispose()
 
-$last = $array.$foldAxis | Sort-Object | Select-Object -Last 1
+$lastFoldValue = $array.$foldAxis | Sort-Object | Select-Object -Last 1
 
 foreach($fold in $folds) {
 
     $foldAxis = $fold.foldAxis
     $foldValue = $fold.foldValue
 
-    $foldSideA = $foldValue
-    $foldSideB = $last - $foldValue
-
     foreach($item in $array | Where-Object { $_.$foldAxis -gt $foldValue } ) {
 
-        $item.$foldAxis = ($last - $item.$foldAxis) + ($foldSideA - $foldSideB)
+        $item.$foldAxis = ($lastFoldValue - $item.$foldAxis) + ($foldValue - ($lastFoldValue - $foldValue))
     }
 }
 
-$maxX = $array.x | Sort-Object | Select-Object -Last 1
-$maxY = $array.y | Sort-Object | Select-Object -Last 1
-$iy = 0
-
 $result = @()
+$indexY = 0
 
-while($iy -le $maxY) {
+while($indexY -le ($array.y | Sort-Object | Select-Object -Last 1)) {
 
-    $ix = 0
+    $indexX = 0
     $string = ""
 
-    while($ix -le $maxX) {
+    while($indexX -le ($array.x | Sort-Object | Select-Object -Last 1)) {
 
-        if($array | where-object { ($_.x -eq $ix) -and ($_.y -eq $iy) }) { $string += "##" }
+        if($array | where-object { ($_.x -eq $indexX) -and ($_.y -eq $indexY) }) { $string += "##" }
         else { $string += "  " }
-        $ix++
+        $indexX++
     }
 
     $result += $string
-    $iy++
+    $indexY++
 }
 
 Write-Host "The puzzle answer is:"
-
 $result
 
 # Answer is HLBUBGFR
