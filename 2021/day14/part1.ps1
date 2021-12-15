@@ -39,7 +39,7 @@ for($i = 0; $i -lt $steps; $i++) {
 $mostCommon = $polymer | Group-Object | Sort-Object Count | Select-Object -Last 1
 $leastCommon = $polymer | Group-Object | Sort-Object Count | Select-Object -First 1
 
-Write-Host "After step $steps, $($mostCommon.Name) is the most common with $($mostCommon.Count) occurences, and $($leastCommon.Name) is the least common with $($leastCommon.Count) occurences."
+Write-Host "After step $steps, $($mostCommon.Name) is the most common with $($mostCommon.Count) occurrences, and $($leastCommon.Name) is the least common with $($leastCommon.Count) occurrences."
 Write-Host "Subtracting these gives the answer $($mostCommon.Count - $leastCommon.Count)."
 
 # Answer is 2027
