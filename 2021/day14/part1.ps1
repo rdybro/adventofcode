@@ -22,6 +22,9 @@ while($line = $inputReader.ReadLine()) {
     })
 }
 
+$inputReader.Close()
+$inputReader.Dispose()
+
 $steps = 10
 
 for($i = 0; $i -lt $steps; $i++) {

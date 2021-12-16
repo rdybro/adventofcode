@@ -26,6 +26,9 @@ while($line = $inputReader.ReadLine()) {
     })
 }
 
+$inputReader.Close()
+$inputReader.Dispose()
+
 for($i = 0; $i -lt ($polymer.Count - 1); $i++) {
 
     $rule = $insertionRules | Where-Object { ($_.element1 -eq $polymer[$i]) -and ($_.element2 -eq $polymer[$i + 1]) }
