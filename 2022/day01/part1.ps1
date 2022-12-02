@@ -7,15 +7,17 @@ $inputReader = New-Object System.IO.StreamReader("$((Get-Location).Path)\input.t
 #$inputReader = New-Object System.IO.StreamReader("$((Get-Location).Path)\input_example.txt")
 
 $mostCalories = 0
-$currentCalories = 0
 
 while($inputReader.EndOfStream -eq $false) {
 
-    [int]$line = $inputReader.ReadLine()
+    $currentCalories = 0
 
-    if($line -gt 0) { $currentCalories += $line }
-    elseif($currentCalories -gt $mostCalories) { $mostCalories = $currentCalories; $currentCalories = 0 }
-    else { $currentCalories = 0 }
+    while([int]$line = $inputReader.ReadLine()) {
+
+        $currentCalories += $line
+    }
+
+    if($currentCalories -gt $mostCalories) { $mostCalories = $currentCalories }
 }
 
 Write-Host "The elf with the most calories is carrying $mostCalories calories."
