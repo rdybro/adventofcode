@@ -6,7 +6,7 @@ These are my solutions for **Advent of Code**. The solutions are made using Powe
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | [2020](https://adventofcode.com/2020) | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: | :star: :star: | :star: | :star: | :star: | :star: | :star: :star: | :star: :star: | :star: :star: | | :star: :star: | | | | :star: | :star: | | |
 | [2021](https://adventofcode.com/2021) | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | | :star: :star: | :star: :star: | :star: :star: | :star: :star: | | :star: :star: | | | | :star: | | :star: | | |
-| [2022](https://adventofcode.com/2022) | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | | | | | | | | | | | | | | | | | | |
+| [2022](https://adventofcode.com/2022) | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | | | | | :star: :star: | | | | | | | | | | | | | |
 
 ## Links
 
