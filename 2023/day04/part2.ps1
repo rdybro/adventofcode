@@ -23,11 +23,9 @@ foreach($line in $inputContent) {
     $cards.Add([int]$cardNumber,@($compare.Count,1))
 }
 
-$myCardCopies = [System.Collections.Generic.List[int]]::new()
+$sum = 0
 
 foreach($card in ($cards.Keys | Sort-Object)) {
-
-    $myCardCopies.Add([int]$card)
 
     for($i = 1; $i -le $cards[$card][0]; $i++) {
 
@@ -38,12 +36,13 @@ foreach($card in ($cards.Keys | Sort-Object)) {
             for ($j = 1; $j -le $cards[$card][1]; $j++) {
 
                 $cards[$nextCard][1]++
-                $myCardCopies.Add($nextCard)
             }
         }
     }
+
+    $sum += $cards[$card][1]
 }
 
-Write-Host "I end up with $($myCardCopies.Count) total scratchcards left."
+Write-Host "I end up with $sum total scratchcards left."
 
 # The answer is 19.499.881
