@@ -7,7 +7,7 @@ $inputContent = Get-Content -LiteralPath input.txt
 #$inputContent = Get-Content -LiteralPath input_example.txt
 #$inputContent = Get-Content -LiteralPath input_edgecases.txt
 
-function Check-Level {
+function Test-Level {
     param(
         [int[]]$Levels
     )
@@ -45,7 +45,7 @@ foreach($line in $inputContent) {
 
     $lineSplit = $line.Split(" ")
 
-    if(Check-Level -Levels $lineSplit) { $safeReports++ }
+    if(Test-Level -Levels $lineSplit) { $safeReports++ }
     else {
 
         $j = 0
@@ -56,7 +56,7 @@ foreach($line in $inputContent) {
             [System.Collections.Generic.List[System.Object]]$list = $lineSplit
             $list.RemoveAt($j)
 
-            if(Check-Level -Levels $list) {
+            if(Test-Level -Levels $list) {
                 
                 $safeWithProblemDampener = $true
                 $safeReports++
