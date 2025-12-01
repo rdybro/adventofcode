@@ -34,7 +34,7 @@ while($instruction = $inputReader.ReadLine()) {
             $dialPoint--
 
             if($dialPoint -eq 0) { $result++ }
-            if($dialPoint -lt 0) { $dialPoint = 99 }
+            elseif($dialPoint -lt 0) { $dialPoint = 99 }
         }
     }
 }
