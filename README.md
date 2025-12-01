@@ -11,6 +11,10 @@ These are my solutions for **Advent of Code**. The solutions are made using Powe
 | [2023](https://adventofcode.com/2023) | :star: :star: | :star: :star: | | :star: :star: | | :star: :star: | :star: :star: | :star: | | | | | | | :star: :star: | | | | | | | | | | |
 | [2024](https://adventofcode.com/2024) | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: :star: | :star: | :star: :star: | | :star: :star: | :star: :star: | :star: :star: | :star: | :star: :star: | :star: :star: | | :star: | :star: | :star: :star: | :star: | | | :star: | :star: | :star: | :star: |
 
+| Year | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| [2025](https://adventofcode.com/2025) | :star: :star: | | | | | | | | | | | |
+
 ## Links
 
 - [Advent of Code](https://adventofcode.com)
