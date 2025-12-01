@@ -14,31 +14,34 @@ while($instruction = $inputReader.ReadLine()) {
     $direction = $instruction.Substring(0,1)
     $turns = $instruction.Substring(1)
 
-    if($direction -eq "R") {
+    $modulusRemainder = $turns % 100
+    $originalPosition = $dialPoint
+    
+    if($turns -ge 100) {
 
-        for($i = 0; $i -lt $turns; $i++) {
-            
-            $dialPoint++
-
-            if($dialPoint -eq 100) {
-
-                $dialPoint = 0
-                $result++
-            }
-        }
+        $result += ($turns - $modulusRemainder) / 100
+        $turns = $modulusRemainder
     }
-    elseif($direction -eq "L") {
-        
-        for($i = 0; $i -lt $turns; $i++) {
-            
-            $dialPoint--
 
-            if($dialPoint -eq 0) { $result++ }
-            elseif($dialPoint -lt 0) { $dialPoint = 99 }
+    if($turns -gt 0) {
+        
+        if($direction -eq "R") { $dialPoint += $turns }
+        elseif($direction -eq "L") { $dialPoint -= $turns }
+    
+        if($dialPoint -eq 0) { $result++ }
+        elseif($dialPoint -gt 99) {
+            
+            $dialPoint -= 100
+            $result++
+        }
+        elseif($dialPoint -lt 0) {
+            
+            $dialPoint += 100
+            if($originalPosition -gt 0) { $result++ }
         }
     }
 }
 
-Write-Host "The dial moves to, or pass, 0 a total of $result times."
+Write-Host "The dial points at 0 a total of $result times."
 
 # The answer is 6700
